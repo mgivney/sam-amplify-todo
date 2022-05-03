@@ -11,7 +11,7 @@ Parameters:
   AmplifyAppId:
     Description: the app id assigned by amplify
     Type: String
-    DefaultValue: dlub0ooqyta56
+    DefaultValue: d3q98mpsf57reu
 
 Globals:
   Function:
