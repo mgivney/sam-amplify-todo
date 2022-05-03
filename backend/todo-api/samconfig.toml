@@ -1,0 +1,22 @@
+version = 0.1
+[dev]
+[dev.deploy]
+[dev.deploy.parameters]
+stack_name = "samp-todo-app-dev"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-pi15xm8tulkl"
+s3_prefix = "samp-todo-app"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "BranchName=\"dev\" AmplifyAppId=\"d3q98mpsf57reu\""
+image_repositories = []
+
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "samp-todo-app"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-pi15xm8tulkl"
+s3_prefix = "samp-todo-app"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "BranchName=\"dev\" AmplifyAppId=\"d3q98mpsf57reu\""
+image_repositories = []

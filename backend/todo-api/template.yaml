@@ -11,7 +11,7 @@ Parameters:
   AmplifyAppId:
     Description: the app id assigned by amplify
     Type: String
-    DefaultValue: d3q98mpsf57reu
+    Default: d3q98mpsf57reu
 
 Globals:
   Function:
@@ -25,7 +25,16 @@ Resources:
       BranchName: !Ref BranchName
       AppId: !Ref AmplifyAppId
       EnableAutoBuild: true
-  
+      EnvironmentVariables:
+        - Name: TODO_API_ENDPOINT
+          Value: https://${BasicAWSApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${BranchName}/
+
+  BasicAWSApiGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: Basic AWS Api Gateway
+      StageName: !Ref BranchName
+
   ExpressFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -37,11 +46,13 @@ Resources:
         ExpressFunctionProxy:
           Type: Api
           Properties:
+            RestApiId: !Ref BasicAWSApiGateway
             Path: '/{proxy+}'
             Method: ANY
         ExpressFunctionRoot:
           Type: Api
           Properties:
+            RestApiId: !Ref BasicAWSApiGateway
             Path: '/'
             Method: ANY
 
@@ -49,4 +60,4 @@ Outputs:
 
   TodoApi:
     Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${ApiGW}.execute-api.${AWS::Region}.amazonaws.com/prod/"
+    Value: !Sub "https://${BasicAWSApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${BranchName}/"
