@@ -1,0 +1,26 @@
+version: 1
+backend:
+  phases:
+    prebuild:
+      - npm ci
+      - pip install aws-sam-cli
+    build:
+      commands:
+        - cd backend/todo-api
+        - export branch=$(git rev-parse --abbrev-ref HEAD)
+        - sam deploy -t template.yaml --stack-name 'todo-$branch-stack' --resolve-s3 --capabilities CAPABILITY_NAMED_IAM --region us-east-1 --parameter-overides BranchName=$branch
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*

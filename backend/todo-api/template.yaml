@@ -27,7 +27,7 @@ Resources:
       EnableAutoBuild: true
       EnvironmentVariables:
         - Name: TODO_API_ENDPOINT
-          Value: https://${BasicAWSApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${BranchName}/
+          Value: !Sub https://${BasicAWSApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${BranchName}/
 
   BasicAWSApiGateway:
     Type: AWS::Serverless::Api

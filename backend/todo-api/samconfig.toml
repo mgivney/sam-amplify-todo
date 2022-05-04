@@ -2,7 +2,7 @@ version = 0.1
 [dev]
 [dev.deploy]
 [dev.deploy.parameters]
-stack_name = "samp-todo-app-dev"
+stack_name = "samp-todo-app"
 s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-pi15xm8tulkl"
 s3_prefix = "samp-todo-app"
 region = "us-east-1"
