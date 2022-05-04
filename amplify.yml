@@ -7,7 +7,7 @@ backend:
     build:
       commands:
         - cd backend/todo-api
-        - sam deploy -t template.yaml --stack-name 'todo-$AWS_BRANCH-stack' --resolve-s3 --capabilities CAPABILITY_NAMED_IAM --region us-east-1 --parameter-overrides BranchName=$AWS_BRANCH
+        - sam deploy -t template.yaml --stack-name 'todo-$AWS_BRANCH-stack' --capabilities CAPABILITY_NAMED_IAM --region us-east-1 --parameter-overrides BranchName=$AWS_BRANCH
 frontend:
   phases:
     preBuild:
