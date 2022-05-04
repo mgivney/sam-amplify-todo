@@ -7,8 +7,7 @@ backend:
     build:
       commands:
         - cd backend/todo-api
-        - export branch=$(git branch --show-current)
-        - sam deploy -t template.yaml --stack-name 'todo-$branch-stack' --resolve-s3 --capabilities CAPABILITY_NAMED_IAM --region us-east-1 --parameter-overrides Branch $branch
+        - sam deploy -t template.yaml --stack-name 'todo-${BranchName}-stack' --resolve-s3 --capabilities CAPABILITY_NAMED_IAM --region us-east-1 --parameter-overrides Branch $branch
 frontend:
   phases:
     preBuild:
